@@ -1,0 +1,3 @@
+row_id,product,description,audience,image_url,link,status
+2,FocusFlow,"A distraction blocker that learns your deep-work patterns and guards your calendar automatically.",remote software teams,https://example.com/assets/focusflow.png,https://example.com/focusflow,new
+3,InvoiceZen,"Turns messy receipts into clean, categorized expense reports in seconds.",freelancers and small agencies,https://example.com/assets/invoicezen.png,https://example.com/invoicezen,new

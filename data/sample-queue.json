@@ -1,0 +1,20 @@
+[
+  {
+    "row_id": "2",
+    "product": "FocusFlow",
+    "description": "A distraction blocker that learns your deep-work patterns and guards your calendar automatically.",
+    "audience": "remote software teams",
+    "image_url": "https://example.com/assets/focusflow.png",
+    "link": "https://example.com/focusflow",
+    "status": "new"
+  },
+  {
+    "row_id": "3",
+    "product": "InvoiceZen",
+    "description": "Turns messy receipts into clean, categorized expense reports in seconds.",
+    "audience": "freelancers and small agencies",
+    "image_url": "https://example.com/assets/invoicezen.png",
+    "link": "https://example.com/invoicezen",
+    "status": "new"
+  }
+]

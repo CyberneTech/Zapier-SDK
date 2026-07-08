@@ -1,0 +1,23 @@
+{
+  "name": "campaign-machine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Zapier SDK demo: turn one Google Sheet row into a multi-channel campaign across ~5 apps.",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "campaign": "npm run build && node dist/campaign.js",
+    "discover": "npm run build && node dist/discover.js",
+    "raw-fetch": "npm run build && node dist/raw-fetch.js"
+  },
+  "dependencies": {
+    "@zapier/zapier-sdk": "latest",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@zapier/zapier-sdk-cli": "latest",
+    "typescript": "^5.6.0"
+  }
+}
