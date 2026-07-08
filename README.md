@@ -109,3 +109,53 @@ npx zapier-sdk run-action slack
 > **Why show discovery:** it demonstrates the SDK's "type-safe + runtime-discoverable" promise and means
 > the demo won't break on a wrong action key. The exact keys below (e.g. `create_spreadsheet_row`) are
 > plausible names — **confirm each with `list-actions` / `list-action-input-fields` before recording.**
+
+---
+
+## 5. Step-by-step build
+
+### Step 1 — Initialize the SDK and resolve connections
+`createZapierSdk()` auto-uses your CLI auth. Resolve one connection per app up front.
+
+### Step 2 — Generate copy with an LLM (model-flexible)
+Call your model of choice directly (keeps the "bring any model" story). Return structured JSON.
+
+### Step 3 — Chain the actions via the SDK
+Two equivalent styles — show both:
+- **App-proxy binding:** `const slack = zapier.apps.slack({ connectionId }); await slack.write.channel_message({ inputs })`
+- **Lower-level:** `zapier.runAction({ app, actionType, action, connection, inputs })`
+
+### Step 4 — Write results back + notify (close the loop)
+Update the Google Sheet row status and post to Slack for approval.
+
+### Step 5 — Make it automatic (Code by Zapier)
+Paste the same logic into a Code step behind a "New Spreadsheet Row" trigger.
+
+### Step 6 — (Optional) raw `fetch` beat
+Hit an endpoint with no pre-built action to prove the escape hatch.
+
+---
+## 7. Final outcomes & deliverables
+
+**On-camera outcomes (what the audience sees happen):**
+1. One `npx tsx src/campaign.ts` run → terminal logs 5 apps hit in order, **no OAuth code anywhere**.
+2. **Live artifacts appear across tools:** a scheduled/queued social post (Buffer/LinkedIn/X), a Gmail
+   **draft** campaign, a **Notion/Trello** content-calendar card, a **Slack** approval message, and the
+   **Google Sheet** row flipped from `new` → `scheduled/published` with IDs + timestamp.
+3. The **runtime-discovery** panel proving the SDK exposes real actions/inputs (no guessing).
+4. The **Code by Zapier** version firing automatically when you add a new sheet row (the "now it's a
+   product, not a script" beat).
+5. (Optional) the **raw `fetch`** call succeeding against an endpoint with no pre-built action.
+
+**Repo deliverables (what you ship alongside the video):**
+- `campaign-machine/` project:
+  - `package.json`, `tsconfig.json`, `.env.example`
+  - `src/llm.ts`, `src/campaign.ts` (hero), `src/discover.ts` (6.3), `src/raw-fetch.ts` (6.4)
+  - `code-by-zapier.js` (6.5) + a short "how to paste into a Zap" note
+  - `README.md` with the 4 tracks + the `npx zapier-sdk ...` cheat-sheet
+- The **Google Sheet template** ("Campaign Queue" with columns + a couple of sample rows).
+- A **demo checklist** (which apps to connect, which action keys were confirmed, GO_LIVE toggle).
+- Optional: a `.zapierrc` showing the **connections map** (name → connectionId) for readable code.
+
+**The one-line result to put on the payoff card:** *"5 apps. 1 script. 0 lines of OAuth. That's the
+Zapier SDK."*
